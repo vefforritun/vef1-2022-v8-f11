@@ -1,6 +1,6 @@
 # Vefforritun 1, 2022: Verkefni 8, JS #2
 
-[Kynning](https://youtu.be/).
+[Kynning](https://youtu.be/iy_VF8uY62k).
 
 ## Markmið
 
