@@ -49,7 +49,7 @@ document.querySelector('#max_cups').innerText = MAX_NUM_OF_CUPS;
  * @returns 
  */
 function onCupClick(e) {
-  // TODO útfæra
+  console.log(e.target.dataset.num);
 }
 
 /**
@@ -58,7 +58,12 @@ function onCupClick(e) {
  * @param {element} parent Element sem á að setja bollana inn í.
  */
 function createCups(num, parent) {
-  // TODO útfæra
+  emptyElement(parent)
+
+  for (let i = 1; i <= num; i++) {
+    const cup = createCup(i, svg, onCupClick);
+    parent.appendChild(cup);
+  }
 }
 
 /**
@@ -74,13 +79,27 @@ function createCups(num, parent) {
  */
 function onFormSubmit(e) {
   e.preventDefault();
+  console.log(e)
+
+  const input = e.target.querySelector('input')
+  const value = input.value;
+
+  const isValid = isValidNum(value, MIN_NUM_OF_CUPS, MAX_NUM_OF_CUPS);
 
   const formError = document.querySelector('.form__error');
-
   formError.classList.add('form__error--hidden');
 
-  // TODO útfæra
+  const valueAsNumber = Number.parseInt(value)
+  if (isValid) {
+    showScreen('main');
+    createCups(valueAsNumber, document.querySelector('.cups'))
+    state.currentCup = randomNumber(1, valueAsNumber);
+  } else {
+    formError.classList.remove('form__error--hidden');
+  }
 }
+
+
 
 // Tengir event handler við formið.
 document.querySelector('form').addEventListener('submit', onFormSubmit);
